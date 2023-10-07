@@ -1,5 +1,5 @@
 .data
-overf:	.asciz "Overflow occured while adding elements: "
+overf:	.asciz "\nOverflow occured while adding elements: "
 space_g:	.asciz " "
 .text
 generate3:
@@ -29,7 +29,8 @@ return:				# come back here if check is false
 overflow_warning:		# determining the sign of possible oveflow
 	add 	t5 t3 t4
 	bgtz	t3 pos_overflow
-	b neg_overflow
+	bltz	t3 neg_overflow
+	b return
 
 pos_overflow:			# if pos + pos = neg -> overflow
 	bltz	t5 overflow
